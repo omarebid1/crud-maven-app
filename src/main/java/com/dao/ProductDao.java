@@ -1,24 +1,22 @@
 package com.dao;
 
 import com.entity.ProductEntity;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public class ProductDao {
+public interface ProductDao {
 
-    @Autowired
-    private SessionFactory sessionFactory;
+    List<ProductEntity> getAllProducts();
 
-    public void saveProduct(ProductEntity product) {
-        sessionFactory.getCurrentSession().save(product);
-    }
+    ProductEntity getProductById(int id);
 
-    public List getAllProduct() {
-        return sessionFactory.getCurrentSession().createQuery("from ProductEntity ", ProductEntity.class).list();
-    }
+    ProductEntity getProductDetailsById(int id);
+
+    void SaveUpdateProduct(ProductEntity product);
+
+    void deleteProduct(int id);
+
 
 }
